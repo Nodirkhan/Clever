@@ -7,28 +7,28 @@ public class ProductService : IProductService
 {
     private readonly IStorageBroker storageBroker;
 
-    public ProductService()
+    public ProductService(IStorageBroker storageBroker = null)
     {
-        storageBroker = new StorageBroker();
+        this.storageBroker = storageBroker ?? new StorageBroker();
     }
 
     public async Task<IEnumerable<Product>> RetrieveProductsAsync()
     {
-        return await this.storageBroker.SelectAllProductAsync();
+        return await storageBroker.SelectAllProductAsync();
     }
 
     public async Task<Product> RetrieveProductByIdAsync(int productId)
     {
         if (productId <= 0)
         {
-            throw new ArgumentException("Invalid product id.");
+            throw new ArgumentOutOfRangeException(nameof(productId), "Product ID must be greater than zero.");
         }
 
-        Product maybeProduct = await this.storageBroker.SelectProductByIdAsync(productId);
+        Product maybeProduct = await storageBroker.SelectProductByIdAsync(productId);
 
         if (maybeProduct is null)
         {
-            throw new ArgumentNullException($"Could not find product with product id: {productId}");
+            throw new KeyNotFoundException($"Could not find product with ID {productId}.");
         }
 
         return maybeProduct;

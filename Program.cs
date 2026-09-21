@@ -11,12 +11,12 @@ try
         rowFormat,
         product.ProductId,
         product.ProductName,
-        product.SupplierID,
-        product.CategoryID,
+        product.SupplierId,
+        product.CategoryId,
         product.QuantityPerUnit,
         product.UnitPrice.ToString("C"));
 }
-catch (Exception exeption)
+catch (Exception exception)
 {
-    Console.WriteLine(exeption.Message);
+    Console.WriteLine(exception.Message);
 }
