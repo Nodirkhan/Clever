@@ -1,8 +1,9 @@
-﻿using Clever.Models.Products;
+﻿using Clever.Brokers.Storages;
+using Clever.Models.Products;
 using Clever.Services.Products;
 const string rowFormat = "{0,-5} {1,-30} {2,-10} {3,-10} {4,-20} {5,10}";
 
-IProductService productService = new ProductService();
+IProductService productService = new ProductService(new StorageBroker());
 
 try
 {
@@ -11,8 +12,8 @@ try
         rowFormat,
         product.ProductId,
         product.ProductName,
-        product.SupplierId,
-        product.CategoryId,
+        product.SupplierID,
+        product.CategoryID,
         product.QuantityPerUnit,
         product.UnitPrice.ToString("C"));
 }

@@ -7,9 +7,10 @@ public class ProductService : IProductService
 {
     private readonly IStorageBroker storageBroker;
 
-    public ProductService(IStorageBroker storageBroker = null)
+    public ProductService(IStorageBroker storageBroker)
     {
-        this.storageBroker = storageBroker ?? new StorageBroker();
+        ArgumentNullException.ThrowIfNull(storageBroker);
+        this.storageBroker = storageBroker;
     }
 
     public async Task<IEnumerable<Product>> RetrieveProductsAsync()

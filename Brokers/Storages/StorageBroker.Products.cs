@@ -6,10 +6,10 @@ namespace Clever.Brokers.Storages;
 public partial class StorageBroker : IStorageBroker
 {
     private const string ProductColumns = """
-        ProductID AS ProductId,
+        ProductID,
         ProductName,
-        SupplierID AS SupplierId,
-        CategoryID AS CategoryId,
+        SupplierID,
+        CategoryID,
         QuantityPerUnit,
         UnitPrice,
         UnitsInStock,
