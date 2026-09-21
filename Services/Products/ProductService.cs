@@ -28,7 +28,7 @@ public class ProductService : IProductService
 
         if (maybeProduct is null)
         {
-            throw new KeyNotFoundException($"Could not find product with ID {productId}.");
+            throw new ProductNotFoundException(productId);
         }
 
         return maybeProduct;
