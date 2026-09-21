@@ -1,5 +1,8 @@
+using System.Runtime.Serialization;
+
 namespace Clever.Models.Shared.Exceptions;
 
+[Serializable]
 public class NotFoundException : Exception
 {
     public NotFoundException()
@@ -15,4 +18,11 @@ public class NotFoundException : Exception
         : base(message, innerException)
     {
     }
+
+#pragma warning disable SYSLIB0051
+    protected NotFoundException(SerializationInfo info, StreamingContext context)
+        : base(info, context)
+    {
+    }
+#pragma warning restore SYSLIB0051
 }
